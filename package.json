@@ -1,0 +1,28 @@
+{
+  "name": "soon-storage",
+  "version": "0.0.2",
+  "type": "module",
+  "homepage": "https://github.com/leafio/soon-storage",
+  "description": "Type-safe storage wrapper for localStorage , sessionStorage .",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.1",
+    "vite-plugin-dts": "^4.4.0"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "soon-storage",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "type": "module",
   "homepage": "https://github.com/leafio/soon-storage",
   "description": "Type-safe storage wrapper for localStorage , sessionStorage .",
@@ -15,6 +15,14 @@
     "import": "./dist/index.js",
     "require": "./dist/index.umd.cjs"
   },
+  "keywords": [
+    "typed-storage",
+    "localStorage",
+    "sessionStorage",
+    "storage",
+    "type safe",
+    "type-safe"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"

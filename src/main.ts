@@ -1,60 +1,55 @@
-import "./style.css";
-import typescriptLogo from "./typescript.svg";
-// import { createLocalStorage } from "../lib/index";
+import { createStorage } from '../lib/index'
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
-// const initData = {
-//   goods: {
-//     name: "pen",
-//     amount: 10,
-//   },
-//   lang: "zh",
-// };
-// const storage = createLocalStorage<{
-//   goods?: {
-//     name: string;
-//     amount: number;
-//   };
-//   lang?: string;
-// }>();
-// const lang = storage.getItem("lang");
-// storage.setItem("lang",);
-// const goods = storage.getItem("goods");
-// goods?.amount;
-// storage.setItem('goods',)
+const storage = createStorage<{
+    name: string,
+    age: number,
+    birth: Date,
+    graduated: boolean,
+    school: {
+        name: string,
+        address: string
+    }
+}>({
+    prefix: 'soon-',
+    provider: () => localStorage,
+    transforms: {
+        name: 'string',
+        age: 'number',
+        birth: {
+            getter: (val) => val === null ? null : new Date(val),
+            setter: (val) => val.toUTCString()
+        },
+        graduated: 'boolean',
+        school: 'json'
+    }
+})
 
-// localStorage.setItem("jjj", null);
+storage.name.set('Jack')
+console.log(storage.name.get())
+storage.age.set(1)
+console.log(storage.age.get())
+storage.birth.set(new Date('2008-08-08'))
+console.log(storage.birth.get()?.toISOString())
+storage.birth.remove()
 
+storage.graduated.set(true)
+console.log(storage.graduated.get())
+storage.school.set({
+    name: 'Blue Sky',
+    address: 'Shanghai'
+})
+console.log(storage.school.get())
+storage.$.setAll({
+    name: 'Lucy',
+    age: 100,
+    birth: new Date(),
+    graduated: false,
+    school: {
+        name: 'Green Land',
+        address: 'Qingdao'
+    }
+})
+storage.birth.remove()
+console.log(storage.$.getAll())
+storage.$.removeAll()
 
-
-// const storage = createLocalStorage<{
-//   goods?: {
-//     name: string;
-//     amount: number;
-//   };
-//   username: string;
-// }>();
-// const goods=storage.getItem('')
-
-
-
-
-
-
-// storage.setItem('goods',)
